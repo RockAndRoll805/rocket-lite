@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://pigvost48n4y"]
+[gd_scene load_steps=11 format=3 uid="uid://pigvost48n4y"]
 
 [ext_resource type="PackedScene" uid="uid://u0mdkwl6r8bh" path="res://floor.tscn" id="1_iqwv3"]
-[ext_resource type="Texture2D" uid="uid://dkxaxvnc2cm2f" path="res://dbg-tex/Dark/texture_04.png" id="2_g14j6"]
 [ext_resource type="PackedScene" uid="uid://gce0jqmn5har" path="res://ramp.tscn" id="2_rb28w"]
 [ext_resource type="PackedScene" uid="uid://brbatimkytatl" path="res://wall.tscn" id="3_8jjm7"]
 [ext_resource type="PackedScene" uid="uid://xwumq1nlvda7" path="res://quake_character.tscn" id="4_4o17q"]
@@ -19,16 +18,6 @@ background_mode = 2
 sky = SubResource("Sky_7qqhv")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ykrsh"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_g14j6"]
-size = Vector2(2000, 2000)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbegm"]
-albedo_texture = ExtResource("2_g14j6")
-uv1_triplanar = true
-uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evoa4"]
 albedo_texture = ExtResource("4_86d0w")
@@ -182,23 +171,8 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 2.79753e
 
 [node name="wall" parent="Geometry/floors" instance=ExtResource("1_iqwv3")]
 
-[node name="NewFloor" type="Node3D" parent="Geometry/floors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32.802513, 0)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/floors/NewFloor"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/floors/NewFloor/StaticBody3D"]
-shape = SubResource("WorldBoundaryShape3D_ykrsh")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry/floors/NewFloor/StaticBody3D"]
-mesh = SubResource("PlaneMesh_g14j6")
-surface_material_override/0 = SubResource("StandardMaterial3D_vbegm")
-
 [node name="BeegFloor" type="CSGBox3D" parent="Geometry/floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40.930286, 0)
-visible = false
 use_collision = true
 collision_layer = 3
 collision_mask = 3
@@ -214,10 +188,10 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -32, 0, -17)
 
 [node name="ramp18" parent="Geometry/ramps" instance=ExtResource("2_rb28w")]
-transform = Transform3D(1, 0, 0, 0, 0.81915224, 0.57357657, 0, -0.57357657, 0.81915224, -32, -34.934, -210)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -32, -35, -210)
 
 [node name="ramp19" parent="Geometry/ramps" instance=ExtResource("2_rb28w")]
-transform = Transform3D(1, 0, 0, 0, 0.81915224, 0.57357657, 0, -0.57357657, 0.81915224, -32, -18.309, -186.213)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -32, -12, -187)
 
 [node name="MeshInstance3D" parent="Geometry/ramps/ramp19/StaticBody3D" index="1"]
 transform = Transform3D(16, 0, 0, 0, 1, 0, 0, 0, 32, 8, -0.500015, 16)
@@ -226,7 +200,7 @@ transform = Transform3D(16, 0, 0, 0, 1, 0, 0, 0, 32, 8, -0.500015, 16)
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -32, -35, -99)
 
 [node name="ramp21" parent="Geometry/ramps" instance=ExtResource("2_rb28w")]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -32, -12.603937, -76.61828)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -32, -12, -76)
 
 [node name="MeshInstance3D" parent="Geometry/ramps/ramp21/StaticBody3D" index="1"]
 transform = Transform3D(16, 0, 0, 0, 1, 0, 0, 0, 32, 8, -0.500015, 16)

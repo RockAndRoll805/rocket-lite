@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var max_distance = 5
+var max_distance = 7
 var knockback_base = 16
 var speed = 45
 

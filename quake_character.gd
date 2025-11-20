@@ -58,9 +58,17 @@ func clip_velocity(normal: Vector3, overbounce: float, delta) -> void:
 	
 	correction_dir = normal * correction_amount
 	velocity -= correction_dir
+	
+	var cur_speed = (velocity * Vector3(1, 0, 1)).length()
 	# this is only here cause I have the gravity too high by default
 	# with a gravity so high, I use this to account for it and allow surfing
-	velocity.y -= correction_dir.y * (gravity/20)
+	if (velocity.y < -5):
+		velocity.y -= correction_dir.y * (gravity/20)
+	elif (velocity.y < 5):
+		velocity.y -= 0 # correction_dir.y * (gravity/20)
+	else:
+		velocity.y -= correction_dir.y * (gravity/cur_speed)
+	# print(round(velocity.y))
 
 func apply_friction(delta):
 	var speed_scalar: float = 0
