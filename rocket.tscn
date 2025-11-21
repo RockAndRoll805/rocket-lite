@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://2421uy8q3oe3"]
+[gd_scene load_steps=6 format=3 uid="uid://2421uy8q3oe3"]
 
 [ext_resource type="Script" uid="uid://dd5lv3u3k5gjy" path="res://rocket.gd" id="1_fj03e"]
+[ext_resource type="AudioStream" uid="uid://mpyulola3ytn" path="res://SFX/missile_trail.mp3" id="2_5gt1y"]
+[ext_resource type="AudioStream" uid="uid://bvxdoqur3cgw5" path="res://SFX/explode.wav" id="3_r2l15"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5gt1y"]
 radius = 0.2
@@ -23,3 +25,14 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_r2l15")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.827451, 0.5647059, 1)
+
+[node name="SFXTrail" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_5gt1y")
+volume_db = -15.0
+
+[node name="SFXExplode" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_r2l15")
+volume_db = -15.0

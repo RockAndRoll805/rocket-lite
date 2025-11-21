@@ -28,7 +28,6 @@ var atk_cd_current = atk_cd_base + 1
 
 func add_force(force: Vector3) -> void:
 	if Input.is_action_pressed("crouch"):
-		print("crouched knockback")
 		velocity += force * 2
 	else:
 		velocity += force
@@ -62,13 +61,13 @@ func clip_velocity(normal: Vector3, overbounce: float, delta) -> void:
 	var cur_speed = (velocity * Vector3(1, 0, 1)).length()
 	# this is only here cause I have the gravity too high by default
 	# with a gravity so high, I use this to account for it and allow surfing
-	if (velocity.y < -5):
-		velocity.y -= correction_dir.y * (gravity/20)
-	elif (velocity.y < 5):
-		velocity.y -= 0 # correction_dir.y * (gravity/20)
-	else:
-		velocity.y -= correction_dir.y * (gravity/cur_speed)
-	# print(round(velocity.y))
+	if cur_speed > 10:
+		if (velocity.y < -5):
+			velocity.y -= correction_dir.y * (gravity/20)
+		elif (velocity.y < 5):
+			velocity.y -= 0 # correction_dir.y * (gravity/20)
+		elif (velocity.y < 50):
+			velocity.y -= correction_dir.y * (gravity/cur_speed) # potential div by 0 xd
 
 func apply_friction(delta):
 	var speed_scalar: float = 0
@@ -135,6 +134,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("attack") and atk_cd_current >= atk_cd_base:
 		get_tree().root.add_child(rocket.instantiate())
 		atk_cd_current = 0
+		$SFXRocketShoot.play()
 	
 	grounded_prev = grounded
 	# Get the input direction and handle the movement/deceleration.

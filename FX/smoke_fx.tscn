@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://baq5ejrgfl1nd"]
+
+[ext_resource type="Script" uid="uid://cowlkhd3dityy" path="res://FX/smoke_fx.gd" id="1_jnnpx"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_pxkor"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qxuar"]
+transparency = 1
+albedo_color = Color(0.5568628, 0.5411765, 0.5803922, 0.5019608)
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_jnnpx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_pxkor")
+surface_material_override/0 = SubResource("StandardMaterial3D_qxuar")

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf87u0nor8tt7"]
+
+[ext_resource type="Script" uid="uid://mlqj7neoaehg" path="res://FX/explode_fx.gd" id="1_h5mbv"]
+[ext_resource type="AudioStream" uid="uid://bvxdoqur3cgw5" path="res://SFX/explode.wav" id="2_y2lsx"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_h0rc0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h5mbv"]
+transparency = 1
+albedo_color = Color(0.9882353, 0.6509804, 0.043137256, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_h5mbv")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_y2lsx")
+volume_db = -15.0
+unit_size = 100.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_h0rc0")
+surface_material_override/0 = SubResource("StandardMaterial3D_h5mbv")
+
+[connection signal="finished" from="AudioStreamPlayer3D" to="AudioStreamPlayer3D" method="_on_finished"]
