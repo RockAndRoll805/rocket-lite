@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://gce0jqmn5har"]
 
-[ext_resource type="Script" uid="uid://cteoqy15q64al" path="res://CSG-Block.gd" id="1_th4d2"]
+[ext_resource type="Script" uid="uid://cteoqy15q64al" path="res://Level/CSG-Block.gd" id="1_th4d2"]
 [ext_resource type="Texture2D" uid="uid://dhinguqll26v0" path="res://dbg-tex/Red/texture_04.png" id="2_6dguf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qcini"]

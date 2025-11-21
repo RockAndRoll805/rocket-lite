@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://xwumq1nlvda7"]
 
 [ext_resource type="Script" uid="uid://cdul2h86wyqq8" path="res://quake_character.gd" id="1_m7sum"]
-[ext_resource type="Texture2D" uid="uid://cj0eto2ldce88" path="res://crosshair.png" id="2_00gm8"]
+[ext_resource type="Texture2D" uid="uid://cj0eto2ldce88" path="res://UI/crosshair.png" id="2_00gm8"]
 [ext_resource type="AudioStream" uid="uid://cf66kbyjprg03" path="res://SFX/rocket.mp3" id="3_8cw6x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n0ia3"]
