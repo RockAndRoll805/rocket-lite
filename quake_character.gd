@@ -108,8 +108,8 @@ func apply_acceleration(acceleration: float, top_speed: float, delta):
 	velocity.x += accel_final * wish_dir.x
 	velocity.z += accel_final * wish_dir.z
 
-func air_move(delta):
-	apply_acceleration(accel_air, top_speed_air, delta)
+func air_move(delta, accel):
+	apply_acceleration(accel, top_speed_air, delta)
 	
 	clip_velocity(get_wall_normal(), 14, delta)
 	clip_velocity(get_floor_normal(), 14, delta)
@@ -141,13 +141,18 @@ func _physics_process(delta):
 	var input_dir: Vector2 = Input.get_vector("left", "right", "forward", "backward")
 	wish_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	projected_speed = (velocity * Vector3(1, 0, 1)).dot(wish_dir)
+	var cur_speed = (velocity * Vector3(1, 0, 1)).length() 
+	speed_label.text = str(int(cur_speed))
 	
-	speed_label.text = str( int( ( velocity * Vector3(1, 0, 1) ).length() ) )
-	
+
+	var new_accel = accel_air
+	if (cur_speed < 8):
+		new_accel = lerpf(2, accel_air, cur_speed/8)
+
 	# Add the gravity.
 	if not is_on_floor():
 		grounded = false
-		air_move(delta)
+		air_move(delta, new_accel)
 	if is_on_floor():
 		if velocity.y > 10:
 			grounded = false
@@ -155,4 +160,17 @@ func _physics_process(delta):
 		else:
 			grounded = true
 			ground_move(delta)
+	
+	var speed_match = 1
+	#if (velocity.length() > 20 and velocity.length() < 50 and velocity.y < -5):
+		#speed_match = absf(35 - velocity.length()) / 15
+	if (velocity.length() > 40 and velocity.length() < 70 and velocity.y > 10):
+		speed_match = absf(55 - velocity.length()) / 15
+	elif (velocity.length() > 30 and velocity.length() < 60 and velocity.y > -5):
+		speed_match = absf(45 - velocity.length()) / 15
+	else:
+		speed_match = absf(35 - velocity.length()) / 15
+
+	speed_label.add_theme_color_override("font_color", Color(speed_match,1 - speed_match,0,1))
+	
 	move_and_slide()

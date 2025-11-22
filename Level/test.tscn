@@ -132,9 +132,6 @@ transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 47, 
 [node name="wall40" parent="Geometry/floors" instance=ExtResource("1_iqwv3")]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 47, -0.56898403, 68.6268)
 
-[node name="wall20" parent="Geometry/floors" instance=ExtResource("1_iqwv3")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 47, 31.1922, 68.6268)
-
 [node name="wall21" parent="Geometry/floors" instance=ExtResource("1_iqwv3")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 15, 31.1922, 68.6268)
 
@@ -223,7 +220,10 @@ transform = Transform3D(1, 0, 0, 0, 0.81915224, 0.57357657, 0, -0.57357657, 0.81
 transform = Transform3D(16, 0, 0, 0, 1, 0, 0, 0, 32, 8, -0.500015, 16)
 
 [node name="ramp20" parent="Geometry/ramps" instance=ExtResource("2_rb28w")]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -32, -35, -99)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -32, -34.88569, -99)
+
+[node name="MeshInstance3D" parent="Geometry/ramps/ramp20/StaticBody3D" index="1"]
+transform = Transform3D(16, 0, 0, 0, 1, 0, 0, 0, 32, 8, -0.4802475, 16.019775)
 
 [node name="ramp21" parent="Geometry/ramps" instance=ExtResource("2_rb28w")]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -32, -12.603937, -76.61828)
@@ -502,7 +502,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.2059, 58.872, 2.97767)
 [editable path="Geometry/floors/wall41"]
 [editable path="Geometry/floors/wall42"]
 [editable path="Geometry/floors/wall40"]
-[editable path="Geometry/floors/wall20"]
 [editable path="Geometry/floors/wall21"]
 [editable path="Geometry/floors/wall22"]
 [editable path="Geometry/floors/wall23"]
