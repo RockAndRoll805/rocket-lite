@@ -26,11 +26,24 @@ var added_force = false
 var atk_cd_base = 0.8
 var atk_cd_current = atk_cd_base + 1
 
-func add_force(force: Vector3) -> void:
-	if Input.is_action_pressed("crouch"):
-		velocity += force * 2
+var time_since_rocket = 0;
+var last_pos_at_rocket = Vector3()
+
+func add_force_rocket(oirign: Vector3, knockback: float, max_distance: float) -> void:
+	var player_position = global_position
+	player_position.y +=2
+	if (time_since_rocket < 0.1):
+		print('using last pos')
+		player_position = last_pos_at_rocket
 	else:
-		velocity += force
+		last_pos_at_rocket = player_position
+	var knockback_amount = knockback - (knockback * ((player_position-oirign).length() / max_distance * 0.5))
+	var knockback_vector = (player_position - oirign).normalized() * knockback_amount
+	if Input.is_action_pressed("crouch"):
+		velocity += knockback_vector * 2
+	else:
+		velocity += knockback_vector
+	time_since_rocket = 0
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -131,6 +144,8 @@ func ground_move(delta):
 
 func _physics_process(delta):
 	atk_cd_current += delta
+	time_since_rocket += delta
+	
 	if Input.is_action_pressed("attack") and atk_cd_current >= atk_cd_base:
 		get_tree().root.add_child(rocket.instantiate())
 		atk_cd_current = 0

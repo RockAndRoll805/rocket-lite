@@ -20,17 +20,15 @@ func _physics_process(delta):
 	time_alive += delta
 	var collision = move_and_collide(-transform.basis.z * speed * delta)
 	if collision != null:
-		print('collision')
 		var player = get_parent().get_child(0).get_node("quake-character")
 		var player_position = player.global_position
 		player_position.y += 2
 		var distance = (player_position - global_position).length()
 		if (distance <= max_distance):
-			var knockback_amount = knockback_base - (knockback_base * (distance / max_distance * 0.5))
-			var knockback_vector = (player_position - global_position).normalized() * knockback_amount
-			#knockback_vector.x *= 0.7
-			#knockback_vector.z *= 0.7
-			player.add_force(knockback_vector)
+			#var knockback_amount = knockback_base - (knockback_base * (distance / max_distance * 0.5))
+			#var knockback_vector = (player_position - global_position).normalized() * knockback_amount
+			#player.add_force(knockback_vector)
+			player.add_force_rocket(global_position, knockback_base, max_distance)
 		else:
 			print("too far from player")
 		var explode_fx = explosion.instantiate()
